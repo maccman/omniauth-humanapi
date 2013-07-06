@@ -1,29 +1,19 @@
-# Omniauth::Humanapi
+# OmniAuth Humanapi
 
-TODO: Write a gem description
+This is a [OmniAuth](http://www.omniauth.org/) strategy for authenticating to HumanAPI. To use it, you'll need to sign up for an OAuth2 Application ID and Secret on the [Human API applications page](http://developer.humanapi.co/).
 
-## Installation
+## Basic Usage
 
-Add this line to your application's Gemfile:
+    use OmniAuth::Builder do
+      provider :humanapi, ENV['HUMANAPI_KEY'], ENV['HUMANAPI_SECRET']
+    end
 
-    gem 'omniauth-humanapi'
+## Example Sinatra usage
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install omniauth-humanapi
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+    get '/auth/humanapi/callback' do
+      auth   = env['omniauth.auth']
+      uid    = auth[:uid]
+      email  = auth[:info][:email]
+      token  = auth[:credentials][:token]
+      'ok'
+    end
