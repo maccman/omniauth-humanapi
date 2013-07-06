@@ -1,4 +1,3 @@
-require 'omniauth-oauth'
 require 'omniauth-oauth2'
 
 module OmniAuth
@@ -26,7 +25,6 @@ module OmniAuth
       end
 
       def raw_info
-        # access_token.options[:mode] = :query
         @raw_info ||= access_token.get('https://api.humanapi.co/v1/human/profile').parsed
       end
     end
