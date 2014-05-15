@@ -17,3 +17,9 @@ This is a [OmniAuth](http://www.omniauth.org/) strategy for authenticating to Hu
       token  = auth[:credentials][:token]
       'ok'
     end
+
+## Pre-registration
+
+HumanAPI allows you to [pre-register](https://user.humanapi.co/developer/docs/app_users) users so they won't have to sign up themselves. By pre-registering, you will receive a `humanId` for every user. This has to be passed as a query parameter to the authentication path:
+
+    /auth/humanapi?human_id=52867cbede3155565f000a0d
